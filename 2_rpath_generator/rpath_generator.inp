@@ -1,0 +1,17 @@
+# control parameters in rpath_generator
+
+[INPUT]
+cvfile       = tmd.dis
+pdbfile      = ../ionized_2jit_WT.pdb
+dcdfile      = ../1_targeted_MD/step5.0_tmd.dcd
+#dcdvelfile   = ../1_targeted_MD/step5.0_tmd.dvl
+
+[OUTPUT]
+rstfile      = images/img{}.rst
+pdbfile      = images/img{}.pdb
+
+[RPATH]
+nreplica     = 32
+iseed        = 1234
+iter_reparam = 10
+

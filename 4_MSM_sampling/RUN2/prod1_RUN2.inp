@@ -1,0 +1,64 @@
+[INPUT]
+topfile = ../../toppar/top_all36_prot.rtf
+parfile = ../../toppar/par_all36m_prot.prm
+strfile = ../../toppar/toppar_water_ions.str
+
+psffile = ../../ionized_2jit_WT.psf
+pdbfile = ../../ionized_2jit_WT.pdb
+rstfile = ../../3_string_method/String100/{}.rst
+
+[OUTPUT]
+logfile = prod1_{}.log
+rstfile = prod1_{}.rst
+dcdfile = prod1_{}.dcd
+
+[REMD]
+dimension         = 1             # Number of dimension of REMD simulation
+exchange_period   = 0
+type1             = TEMPERATURE   # Temperature exchange
+nreplica1         = 32            # Number of replicas
+parameters1       = 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0 300.0
+cyclic_params1    = NO
+
+[ENERGY]
+forcefield        = CHARMM        # [CHARMM]
+electrostatic     = PME           # [CUTOFF,PME]
+switchdist        = 10.0          # switch distance
+cutoffdist        = 12.0          # cutoff distance
+pairlistdist      = 13.5          # pair-list distance
+pme_nspline       = 4
+vdw_force_switch  = YES
+pme_max_spacing   = 1.2
+
+[DYNAMICS]
+integrator        = VRES          # [VVER,RESPA]
+timestep          = 0.0035        # timestep (ps)
+nsteps            = 15000000      # number of MD steps (52.5 ns)
+crdout_period     = 30000
+eneout_period     = 1000          # energy output period
+rstout_period     = 30000
+elec_long_period  = 2
+nbupdate_period   = 6
+thermostat_period = 6
+barostat_period   = 6
+hydrogen_mr       = YES
+hmr_target        = solute
+hmr_ratio         = 3.0
+hmr_ratio_xh1     = 2.0
+iseed             = 900206        # random number seed
+
+[CONSTRAINTS]
+rigid_bond        = YES           # constraints all bonds involving hydrogen
+fast_water        = YES
+shake_tolerance   = 1.0D-10
+
+[ENSEMBLE]
+ensemble          = NPT           # [NVE,NVT,NPT]
+tpcontrol         = BUSSI         # thermostat and barostat
+pressure          = 1.0           # atm
+isotropy          = ISO
+group_tp          = YES
+
+[BOUNDARY]
+type              = PBC           # [PBC]
+

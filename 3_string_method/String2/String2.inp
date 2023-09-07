@@ -1,0 +1,186 @@
+[INPUT]
+topfile = ../../toppar/top_all36_prot.rtf
+parfile = ../../toppar/par_all36m_prot.prm
+strfile = ../../toppar/toppar_water_ions.str
+
+psffile = ../../ionized_2jit_WT.psf
+pdbfile = ../../ionized_2jit_WT.pdb
+rstfile = ../String1/{}.rst
+
+[OUTPUT]
+logfile   = {}.log
+rstfile   = {}.rst
+dcdfile   = {}.dcd
+rpathfile = {}.rpath
+
+[ENERGY]
+forcefield        = CHARMM        # [CHARMM]
+electrostatic     = PME           # [CUTOFF,PME]
+switchdist        = 10.0          # switch distance
+cutoffdist        = 12.0          # cutoff distance
+pairlistdist      = 13.5          # pair-list distance
+vdw_force_switch  = YES
+pme_nspline       = 4
+pme_max_spacing   = 1.2
+
+[DYNAMICS]
+integrator        = VVER          # [VVER,RESPA]
+timestep          = 0.002         # timestep (ps)
+nsteps            = 2500000       # number of MD steps
+crdout_period     = 10000
+eneout_period     = 1000          # energy output period
+rstout_period     = 10000
+nbupdate_period   = 10
+
+[CONSTRAINTS]
+rigid_bond        = YES           # constraints all bonds involving hydrogen
+fast_water        = YES
+shake_tolerance   = 1.0D-10
+
+[ENSEMBLE]
+ensemble          = NPT           # [NVE,NVT,NPT]
+tpcontrol         = BUSSI         # thermostat and barostat
+temperature       = 300.0
+pressure          = 1.0           # atm
+isotropy          = ISO
+
+[BOUNDARY]
+type              = PBC           # [PBC]
+
+[SELECTION]
+group1  = segid:PROA and rnam:GLU and rno:16  and an:CA
+group2  = segid:PROB and rnam:LYS and rno:529 and an:CA
+group3  = segid:PROA and rnam:THR and rno:56  and an:CA
+group4  = segid:PROB and rnam:ASP and rno:554 and an:CA
+group5  = segid:PROA and rnam:PRO and rno:58  and an:CA
+group6  = segid:PROB and rnam:SER and rno:557 and an:CA
+group7  = segid:PROA and rnam:LEU and rno:65  and an:CA
+group8  = segid:PROB and rnam:LYS and rno:549 and an:CA
+group9  = segid:PROA and rnam:TYR and rno:69  and an:CA
+group10 = segid:PROB and rnam:MET and rno:545 and an:CA
+group11 = segid:PROA and rnam:SER and rno:73  and an:CA
+group12 = segid:PROB and rnam:ILE and rno:541 and an:CA
+group13 = segid:PROA and rnam:THR and rno:88  and an:CA
+group14 = segid:PROA and rnam:SER and rno:89  and an:CA
+group15 = segid:PROB and rnam:ILE and rno:553 and an:CA
+group16 = segid:PROA and rnam:ALA and rno:27  and an:CA
+group17 = segid:PROA and rnam:ASP and rno:142 and an:CA
+group18 = segid:PROA and rnam:PRO and rno:182 and an:CA
+group19 = segid:PROA and rnam:PHE and rno:28  and an:CA
+group20 = segid:PROA and rnam:LYS and rno:62  and an:CA
+group21 = segid:PROA and rnam:LEU and rno:52  and an:CA
+group22 = segid:PROA and rnam:ALA and rno:55  and an:CA
+group23 = segid:PROA and rnam:TYR and rno:174 and an:CA
+group24 = segid:PROA and rnam:GLU and rno:67  and an:CA
+group25 = segid:PROA and rnam:PHE and rno:161 and an:CA
+group26 = segid:PROA and rnam:ARG and rno:137 and an:CA
+group27 = segid:PROA and rnam:LEU and rno:167 and an:CA
+group28 = segid:PROA and rnam:LEU and rno:163 and an:CA
+group29 = segid:PROA and rnam:LYS and rno:172 and an:CA
+group30 = segid:PROA and rnam:GLU and rno:177 and an:CA
+group31 = segid:PROA and rnam:TYR and rno:196 and an:CA
+group32 = segid:PROA and rnam:LYS and rno:50  and an:NZ
+group33 = segid:PROA and rnam:GLU and rno:67  and an:CD
+group34 = segid:PROA and rnam:LYS and rno:165 and an:NZ
+group35 = segid:PROA and rnam:ARG and rno:141 and an:CZ
+group36 = segid:PROA and rnam:GLU and rno:170 and an:CD
+
+[RPATH]
+nreplica      = 32
+rpath_period  = 1000
+delta         = 0.001
+smooth        = 0.0
+rest_function = 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22
+fix_terminal  = YES
+
+[RESTRAINTS]
+nfunctions     = 22
+function1      = DIST
+constant1      = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference1     = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index1  = 1 2
+function2      = DIST
+constant2      = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference2     = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index2  = 3 4
+function3      = DIST
+constant3      = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference3     = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index3  = 5 6
+function4      = DIST
+constant4      = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference4     = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index4  = 7 8
+function5      = DIST
+constant5      = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference5     = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index5  = 9 10
+function6      = DIST
+constant6      = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference6     = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index6  = 11 12
+function7      = DIST
+constant7      = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference7     = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index7  = 2 13
+function8      = DIST
+constant8      = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference8     = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index8  = 14 15
+function9      = DIST
+constant9      = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference9     = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index9  = 16 17
+function10     = DIST
+constant10     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference10    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index10 = 16 18
+function11     = DIST
+constant11     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference11    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index11 = 19 20
+function12     = DIST
+constant12     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference12    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index12 = 20 21
+function13     = DIST
+constant13     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference13    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index13 = 14 22
+function14     = DIST
+constant14     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference14    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index14 = 22 23
+function15     = DIST
+constant15     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference15    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index15 = 24 25
+function16     = DIST
+constant16     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference16    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index16 = 26 27
+function17     = DIST
+constant17     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference17    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index17 = 27 28
+function18     = DIST
+constant18     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference18    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index18 = 29 30
+function19     = DIST
+constant19     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference19    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index19 = 23 31
+function20     = DIST
+constant20     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference20    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index20 = 32 33
+function21     = DIST
+constant21     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference21    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index21 = 33 34
+function22     = DIST
+constant22     = 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+reference22    = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+select_index22 = 35 36
+

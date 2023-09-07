@@ -1,0 +1,65 @@
+[INPUT]
+topfile = ../toppar/top_all36_prot.rtf
+parfile = ../toppar/par_all36m_prot.prm
+strfile = ../toppar/toppar_water_ions.str
+
+psffile = ../ionized_2jit_WT.psf         # protein structure file
+pdbfile = ../ionized_2jit_WT.pdb         # PDB file
+reffile = target_path1.pdb               # PDB file for restraints
+rstfile = step4.1_equilibration.rst      # restart file
+ 
+[OUTPUT]
+rstfile    = step5.0_tmd.rst
+dcdfile    = step5.0_tmd.dcd
+dcdvelfile = step5.0_tmd.dvl
+
+[ENERGY]
+forcefield       = CHARMM        # [CHARMM]
+electrostatic    = PME           # [CUTOFF,PME]
+switchdist       = 10.0          # switch distance
+cutoffdist       = 12.0          # cutoff distance
+pairlistdist     = 13.5          # pair-list distance
+pme_nspline      = 4
+water_model      = NONE
+vdw_force_switch = YES
+
+[DYNAMICS]
+integrator       = VVER          # [VVER,RESPA]
+timestep         = 0.002         # timestep (ps)
+nsteps           = 100000        # number of MD steps
+crdout_period    = 100
+eneout_period    = 100           # energy output period
+velout_period    = 100
+rstout_period    = 5000
+nbupdate_period  = 10
+steered_md       = YES
+initial_rmsd     = 5.2457        # initial rmsd from reffile
+final_rmsd       = 0.01          # final rmsd from reffile
+
+[CONSTRAINTS]
+rigid_bond       = YES           # constraints all bonds involving hydrogen
+
+[ENSEMBLE]
+ensemble         = NPT           # [NVE,NVT,NPT]
+tpcontrol        = BUSSI         # thermostat and barostat
+temperature      = 300
+pressure         = 1.0           # atm
+isotropy         = ISO
+
+[BOUNDARY]
+type             = PBC           # [PBC]
+
+[SELECTION]
+group1           = (sid:PROA or sid:PROB) and heavy
+
+[RESTRAINTS]
+nfunctions       = 1
+function1        = RMSD
+reference1       = 5.2457
+constant1        = 2000.0
+select_index1    = 1
+
+[FITTING]
+fitting_method   = TR+ROT
+fitting_atom     = 1             # same group as that of restraints
+

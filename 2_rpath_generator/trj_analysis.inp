@@ -1,0 +1,40 @@
+[INPUT]
+psffile       = ../ionized_2jit_WT.psf      # protein structure file
+reffile       = ../ionized_2jit_WT.pdb      # PDB file
+
+[OUTPUT]
+disfile       = tmd.dis       # distance file
+
+[TRAJECTORY]
+trjfile1      = ../1_targeted_MD/step5.0_tmd.dcd      # trjectory file
+md_step1      = 100000        # number of MD steps
+mdout_period1 = 100           # MD output period
+ana_period1   = 100           # analysis period
+trj_format    = DCD           # (PDB/DCD)
+trj_type      = COOR+BOX      # (COOR/COOR+BOX)
+
+[OPTION]
+check_only    = NO
+distance1     = PROA:16:GLU:CA  PROB:529:LYS:CA
+distance2     = PROA:56:THR:CA  PROB:554:ASP:CA
+distance3     = PROA:58:PRO:CA  PROB:557:SER:CA
+distance4     = PROA:65:LEU:CA  PROB:549:LYS:CA
+distance5     = PROA:69:TYR:CA  PROB:545:MET:CA
+distance6     = PROA:73:SER:CA  PROB:541:ILE:CA
+distance7     = PROA:88:THR:CA  PROB:529:LYS:CA
+distance8     = PROA:89:SER:CA  PROB:553:ILE:CA
+distance9     = PROA:27:ALA:CA  PROA:142:ASP:CA
+distance10    = PROA:27:ALA:CA  PROA:182:PRO:CA
+distance11    = PROA:28:PHE:CA  PROA:62:LYS:CA
+distance12    = PROA:52:LEU:CA  PROA:62:LYS:CA
+distance13    = PROA:55:ALA:CA  PROA:89:SER:CA
+distance14    = PROA:55:ALA:CA  PROA:174:TYR:CA
+distance15    = PROA:67:GLU:CA  PROA:161:PHE:CA
+distance16    = PROA:137:ARG:CA PROA:167:LEU:CA
+distance17    = PROA:163:LEU:CA PROA:167:LEU:CA
+distance18    = PROA:172:LYS:CA PROA:177:GLU:CA
+distance19    = PROA:174:TYR:CA PROA:196:TYR:CA
+distance20    = PROA:50:LYS:NZ  PROA:67:GLU:CD
+distance21    = PROA:67:GLU:CD  PROA:165:LYS:NZ
+distance22    = PROA:141:ARG:CZ PROA:170:GLU:CD
+

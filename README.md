@@ -6,3 +6,5 @@ Supporting Information for a paper describing the MD simulations, STRING method,
 - [`3_string_method/`](3_string_method): This folder contains input files of the STRING method.
 - [`4_MSM_sampling/`](4_MSM_sampling): This folder contains input files of MD simulations for MSM.
 - ionized_2jit_WT.pdb, psf: protein coordinate and topology files for the EGFR dimer.
+
+For MD simulations, the toppar files of the CHARMM force field are required. The toppar files of the CHARMM force field can be downloaded from http://mackerell.umaryland.edu/charmm_ff.shtml.
